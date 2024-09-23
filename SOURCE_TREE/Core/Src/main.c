@@ -118,8 +118,24 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer(500);
+  int flag = 0;
   while (1)
   {
+	  	if (flag == 0) {
+	  		HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
+	  		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);
+	  		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
+	  		display7SEG(1);
+	  		setTimer(500);
+	  	}
+	  	else if(flag == 1){
+	  		HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
+	  		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_SET);
+	  		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_RESET);
+	  		display7SEG(2);
+	  		setTimer(500);
+	  	}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -246,23 +262,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-volatile int counter = 0;
+int counter = 0;
+int flag = 0;
+void timerRun(){
+	 counter--;
+	 if(counter <= 0){
+		 flag = 1;
+	 }
+}
+
+void setTimer(int duration){
+	flag = 0;
+	counter = duration/10;
+}
+
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 	{
-	if (counter == 0) {
-		HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
-		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
-		display7SEG(1);
-		counter = 1;
-	}
-	else if(counter == 1){
-		HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
-		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_RESET);
-		display7SEG(2);
-		counter = 0;
-	}
+	timerRun();
 }
 /* USER CODE END 4 */
 
