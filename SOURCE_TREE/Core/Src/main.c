@@ -98,6 +98,7 @@ int main(void)
   setTimer1(100);
   setTimer2(100);
   setTimer3(100);
+  setTimer0(1000);
 
   const int MAX_LED = 4;
   int index_led = 0;
@@ -105,6 +106,10 @@ int main(void)
 
   while (1)
   {
+	  if (timer0_flag == 1) {
+			  HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
+			  setTimer0 (2000) ;
+		  }
 
 	  if (timer3_flag == 1) {
 		  setTimer3(100);
