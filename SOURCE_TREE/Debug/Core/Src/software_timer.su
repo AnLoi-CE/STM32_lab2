@@ -6,3 +6,4 @@ software_timer.c:40:6:timerRun	4	static
 software_timer.c:68:6:display7SEG	16	static
 software_timer.c:151:6:updateClockBuffer	16	static
 software_timer.c:158:6:update7SEG	16	static
+software_timer.c:212:6:updateLEDMatrix	16	static
