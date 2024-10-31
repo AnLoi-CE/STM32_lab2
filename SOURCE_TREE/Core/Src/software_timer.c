@@ -13,6 +13,9 @@ int timer1_flag = 0;
 int timer2_counter = 0;
 int timer2_flag = 0;
 
+int timer3_counter = 0;
+int timer3_flag = 0;
+
 void setTimer1(int duration){
 	timer1_counter = duration;
 	timer1_flag = 0;
@@ -20,6 +23,10 @@ void setTimer1(int duration){
 void setTimer2(int duration){
 	timer2_counter = duration;
 	timer2_flag = 0;
+}
+void setTimer3(int duration) {
+	timer3_counter = duration;
+	timer3_flag = 0;
 }
 void timerRun(){
 	if(timer1_counter > 0){
@@ -31,10 +38,16 @@ void timerRun(){
 
 	if(timer2_counter >0){
 			timer2_counter--;
-			if(timer2_counter <=0){
+			if(timer2_counter <= 0){
 				timer2_flag = 1;
 			}
 		}
+	if (timer3_counter > 0) {
+			timer3_counter--;
+	        if (timer3_counter <= 0) {
+	        	timer3_flag = 1;
+	        }
+	}
 }
 
 void display7SEG(int num)
@@ -119,7 +132,14 @@ void display7SEG(int num)
             break;
     }
 }
-int led_buffer[4] = {1 , 2 , 3 , 0};
+int led_buffer[4] = {1 , 5 , 0 , 8};
+void updateClockBuffer(int hour, int minute) {
+    led_buffer[0] = hour / 10;
+    led_buffer[1] = hour % 10;
+    led_buffer[2] = minute / 10;
+    led_buffer[3] = minute % 10;
+}
+
 void update7SEG(int index) {
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
@@ -162,4 +182,3 @@ switch (index) {
 		break ;
 	}
 }
-

@@ -97,22 +97,44 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   setTimer1(100);
   setTimer2(100);
+  setTimer3(100);
 
   const int MAX_LED = 4;
   int index_led = 0;
+  int hour = 15, minute = 8, second = 50;
 
   while (1)
   {
-	  if (timer1_flag == 1) {
-          setTimer1(100);
-          update7SEG(index_led);
-          index_led = (index_led + 1) % MAX_LED;
+
+	  if (timer3_flag == 1) {
+		  setTimer3(100);
+          second++;
+            if (second >= 60) {
+                second = 0;
+                minute++;
+            }
+            if (minute >= 60) {
+                minute = 0;
+                hour++;
+            }
+            if (hour >= 24) {
+                hour = 0;
+            }
+
+          updateClockBuffer(hour, minute);
+
 	  	  }
+	  if (timer1_flag == 1) {
+		  setTimer1(100);
+	      update7SEG(index_led);
+	      index_led = (index_led + 1) % MAX_LED;
+	          }
 
 	  if (timer2_flag == 1) {
 		  setTimer2(100);
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	      }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
