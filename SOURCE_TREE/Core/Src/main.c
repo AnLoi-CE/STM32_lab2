@@ -95,7 +95,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
+  setTimer1(25);
   setTimer2(100);
   setTimer3(100);
   setTimer0(1000);
@@ -108,7 +108,7 @@ int main(void)
   {
 	  if (timer0_flag == 1) {
 			  HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin ) ;
-			  setTimer0 (2000) ;
+			  setTimer0 (1000) ;
 		  }
 
 	  if (timer3_flag == 1) {
@@ -130,7 +130,7 @@ int main(void)
 
 	  	  }
 	  if (timer1_flag == 1) {
-		  setTimer1(100);
+		  setTimer1(25);
 	      update7SEG(index_led);
 	      index_led = (index_led + 1) % MAX_LED;
 	          }

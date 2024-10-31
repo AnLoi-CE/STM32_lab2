@@ -117,8 +117,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
- 8000168:	2064      	movs	r0, #100	; 0x64
+  setTimer1(25);
+ 8000168:	2019      	movs	r0, #25
  800016a:	f000 f975 	bl	8000458 <setTimer1>
   setTimer2(100);
  800016e:	2064      	movs	r0, #100	; 0x64
@@ -155,8 +155,8 @@ int main(void)
  800019e:	2120      	movs	r1, #32
  80001a0:	4826      	ldr	r0, [pc, #152]	; (800023c <main+0xf0>)
  80001a2:	f000 ffc7 	bl	8001134 <HAL_GPIO_TogglePin>
-			  setTimer0 (2000) ;
- 80001a6:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
+			  setTimer0 (1000) ;
+ 80001a6:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80001aa:	f000 f93b 	bl	8000424 <setTimer0>
 		  }
 
@@ -216,8 +216,8 @@ int main(void)
  80001f6:	681b      	ldr	r3, [r3, #0]
  80001f8:	2b01      	cmp	r3, #1
  80001fa:	d10f      	bne.n	800021c <main+0xd0>
-		  setTimer1(100);
- 80001fc:	2064      	movs	r0, #100	; 0x64
+		  setTimer1(25);
+ 80001fc:	2019      	movs	r0, #25
  80001fe:	f000 f92b 	bl	8000458 <setTimer1>
 	      update7SEG(index_led);
  8000202:	6978      	ldr	r0, [r7, #20]
