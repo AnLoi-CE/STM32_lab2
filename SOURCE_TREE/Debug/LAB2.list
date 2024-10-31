@@ -117,11 +117,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
- 8000168:	2032      	movs	r0, #50	; 0x32
+  setTimer1(100);
+ 8000168:	2064      	movs	r0, #100	; 0x64
  800016a:	f000 f91b 	bl	80003a4 <setTimer1>
-  setTimer2(50);
- 800016e:	2032      	movs	r0, #50	; 0x32
+  setTimer2(100);
+ 800016e:	2064      	movs	r0, #100	; 0x64
  8000170:	f000 f92c 	bl	80003cc <setTimer2>
 
   const int MAX_LED = 4;
@@ -138,13 +138,13 @@ int main(void)
  800017e:	681b      	ldr	r3, [r3, #0]
  8000180:	2b01      	cmp	r3, #1
  8000182:	d10f      	bne.n	80001a4 <main+0x58>
-		setTimer1(50);
- 8000184:	2032      	movs	r0, #50	; 0x32
+          setTimer1(100);
+ 8000184:	2064      	movs	r0, #100	; 0x64
  8000186:	f000 f90d 	bl	80003a4 <setTimer1>
-		update7SEG(index_led);
+          update7SEG(index_led);
  800018a:	6878      	ldr	r0, [r7, #4]
  800018c:	f000 faa8 	bl	80006e0 <update7SEG>
-		index_led = (index_led + 1) % MAX_LED;
+          index_led = (index_led + 1) % MAX_LED;
  8000190:	687b      	ldr	r3, [r7, #4]
  8000192:	3301      	adds	r3, #1
  8000194:	683a      	ldr	r2, [r7, #0]
@@ -160,8 +160,8 @@ int main(void)
  80001a6:	681b      	ldr	r3, [r3, #0]
  80001a8:	2b01      	cmp	r3, #1
  80001aa:	d1e7      	bne.n	800017c <main+0x30>
-		  setTimer2(50);
- 80001ac:	2032      	movs	r0, #50	; 0x32
+		  setTimer2(100);
+ 80001ac:	2064      	movs	r0, #100	; 0x64
  80001ae:	f000 f90d 	bl	80003cc <setTimer2>
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
  80001b2:	2110      	movs	r1, #16
